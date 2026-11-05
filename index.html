@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calmly Health Exhibition</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5faf6;color:#17231c}
+header{background:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;border-bottom:1px solid #dfe9e2;z-index:5}
+.logo{font-size:24px;font-weight:bold;color:#17613c}.logo small{display:block;font-size:9px;color:#849089}
+nav button{border:0;background:transparent;padding:9px 12px;font-weight:bold;color:#59655e}
+.wrap{width:90%;max-width:1150px;margin:auto}.hero{margin:28px 0;padding:40px;border-radius:25px;background:linear-gradient(120deg,#e9f5ec,#d3e7d9);display:flex;justify-content:space-between;align-items:center}.hero h1{font-size:42px;margin:12px 0}.hero p{max-width:600px;line-height:1.6;color:#536058}.hero-icon{font-size:100px}.pill,.tag{display:inline-block;padding:6px 10px;border-radius:20px;background:#e3f2e8;color:#17613c;font-size:10px;font-weight:bold}.btn{background:#17613c;color:white;border:0;border-radius:11px;padding:12px 18px;font-weight:bold;margin-top:12px}
+.section{margin:35px 0}.hidden{display:none}.cards,.diseases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.diseases{grid-template-columns:repeat(3,1fr)}
+.card,.form,.report,.disease{background:white;border:1px solid #e0e9e3;border-radius:17px;padding:19px;box-shadow:0 5px 20px #17332208}.card p,.disease p,.muted{color:#66736b;line-height:1.5;font-size:13px}
+.check{display:grid;grid-template-columns:1fr 1fr;gap:18px}label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}input,select{width:100%;padding:11px;border:1px solid #d7e2da;border-radius:9px}.symptoms{display:grid;grid-template-columns:1fr 1fr;gap:7px}.symptoms label{background:#f0f7f2;padding:9px;border-radius:9px;font-weight:normal;margin:0}.symptoms input{width:auto}
+.result{background:#eff7f1;padding:13px;border-radius:12px;margin:9px 0}.result h3{color:#17613c;margin:0 0 5px}.warning{background:#fff7df;padding:13px;border-radius:11px;font-size:12px;line-height:1.5;margin-top:14px}
+footer{margin-top:50px;background:#17231c;color:white;text-align:center;padding:28px;font-size:12px}
+@media(max-width:800px){.cards{grid-template-columns:1fr 1fr}.check{grid-template-columns:1fr}.hero{flex-direction:column;text-align:center}.hero h1{font-size:32px}.diseases{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){header{flex-direction:column;gap:8px}.cards,.diseases{grid-template-columns:1fr}.symptoms{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🍃 Calmly<small>BETTER HEALTH • BETTER AWARENESS</small></div>
+<nav>
+<button onclick="page('home')">Dashboard</button>
+<button onclick="page('check')">Health Check</button>
+<button onclick="page('disease')">Diseases</button>
+<button onclick="page('about')">How It Works</button>
+</nav>
+</header>
+
+<main class="wrap">
+<section id="home" class="section">
+<div class="hero">
+<div><span class="pill">SCIENCE EXHIBITION PROJECT</span>
+<h1>Understand Your Health.</h1>
+<p>Explore common diseases and demonstrate how JavaScript can compare selected symptoms with an educational disease database.</p>
+<button class="btn" onclick="page('check')">Start Health Check →</button></div>
+<div class="hero-icon">🩺</div>
+</div>
+<h2>Health Categories</h2>
+<div class="cards">
+<div class="card">🦠<h3>Communicable</h3><p>Diseases that can spread between people, animals, or through contaminated sources.</p></div>
+<div class="card">❤️<h3>Non-communicable</h3><p>Conditions that generally do not spread from person to person.</p></div>
+<div class="card">🌡️<h3>Common Illnesses</h3><p>Examples include common cold and influenza, which can share symptoms.</p></div>
+<div class="card">🧠<h3>Awareness</h3><p>Learn symptoms and understand why professional medical advice matters.</p></div>
+</div>
+</section>
+
+<section id="check" class="section hidden">
+<h2>🩺 Educational Health Check</h2><p class="muted">This is a school-project demonstration, not a medical diagnosis.</p>
+<div class="check">
+<div class="form"><h2>Choose Symptoms</h2>
+<label>Age</label><input id="age" type="number" placeholder="Example: 13">
+<label>Symptoms</label>
+<div class="symptoms">
+<label><input type="checkbox" value="fever">Fever</label><label><input type="checkbox" value="cough">Cough</label>
+<label><input type="checkbox" value="runny">Runny nose</label><label><input type="checkbox" value="throat">Sore throat</label>
+<label><input type="checkbox" value="breath">Breathing difficulty</label><label><input type="checkbox" value="wheeze">Wheezing</label>
+<label><input type="checkbox" value="headache">Headache</label><label><input type="checkbox" value="body">Body pain</label>
+<label><input type="checkbox" value="vomit">Vomiting</label><label><input type="checkbox" value="diarrhea">Diarrhoea</label>
+<label><input type="checkbox" value="rash">Rash</label><label><input type="checkbox" value="tired">Tiredness</label>
+<label><input type="checkbox" value="thirst">Increased thirst</label><label><input type="checkbox" value="urine">Frequent urination</label>
+</div>
+<button class="btn" onclick="checkSymptoms()">Check Possible Matches</button>
+</div>
+<div class="report"><h2>Health Report</h2><div id="out"><p class="muted">Select symptoms and press the button.</p></div>
+<div class="warning">⚠️ <b>Important:</b> A symptom overlap does not mean someone has a disease. Many conditions share symptoms. Real diagnosis requires assessment by a qualified healthcare professional.</div>
+</div>
+</div>
+</section>
+
+<section id="disease" class="section hidden"><h2>📚 Disease Explorer</h2><div class="diseases" id="list"></div></section>
+
+<section id="about" class="section hidden"><div class="card">
+<span class="pill">PROJECT WORKING</span><h2>How Calmly Works</h2>
+<p class="muted"><b>1. Input:</b> visitor selects symptoms → <b>2. Processing:</b> JavaScript compares them with the database → <b>3. Output:</b> possible educational matches appear.</p>
+<p class="muted"><b>HTML</b> creates structure. <b>CSS</b> creates design. <b>JavaScript</b> performs the comparison.</p>
+<div class="warning">This model does not diagnose cancer, asthma, flu, diabetes, or any other disease and does not predict an exact recovery time.</div>
+</div></section>
+</main>
+<footer>Calmly Health Project • Science Exhibition • Educational use only</footer>
+
+<script>
+const db=[
+["Common Cold","Communicable",["cough","runny","throat"],"Runny nose, cough and sore throat are common cold symptoms."],
+["Influenza (Flu)","Communicable",["fever","cough","body","headache","tired"],"Flu can involve fever, cough, body aches, headache and tiredness."],
+["Asthma","Non-communicable",["breath","wheeze","cough"],"Asthma is a long-term airway condition that can involve wheezing and breathing difficulty."],
+["Dengue","Communicable",["fever","headache","body","tired"],"Dengue is a mosquito-borne viral infection that can cause fever and body pain."],
+["Malaria","Communicable",["fever","headache","tired"],"Malaria is a mosquito-borne parasitic disease that can cause fever and chills."],
+["Tuberculosis","Communicable",["cough","fever","tired"],"Tuberculosis commonly affects the lungs and requires professional diagnosis."],
+["Measles","Communicable",["fever","cough","rash"],"Measles is highly contagious and commonly includes fever and rash."],
+["Chickenpox","Communicable",["fever","rash","tired"],"Chickenpox commonly includes fever and an itchy rash."],
+["Typhoid","Communicable",["fever","headache","diarrhea","tired"],"Typhoid is a bacterial infection requiring professional diagnosis and treatment."],
+["Diabetes","Non-communicable",["thirst","urine","tired"],"Increased thirst and frequent urination can occur with diabetes, but symptoms alone cannot diagnose it."],
+["Heart Disease","Non-communicable",["breath","tired"],"Heart disease is a broad group of conditions with many possible symptoms."],
+["Cancer","Non-communicable",["tired"],"Cancer is a broad group of diseases; tiredness alone cannot identify cancer."],
+["Hypertension","Non-communicable",[],"High blood pressure often has no obvious symptoms, so measurement is important."],
+["Chronic Kidney Disease","Non-communicable",["tired"],"A long-term condition in which kidney function can become reduced."],
+["Osteoporosis","Non-communicable",[],"A condition in which bones become weaker and more likely to fracture."]
+];
+const list=document.getElementById("list");
+list.innerHTML=db.map(d=>'<div class="disease"><span class="tag">'+d[1].toUpperCase()+'</span><h3>'+d[0]+'</h3><p>'+d[3]+'</p></div>').join("");
+function page(id){["home","check","disease","about"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden");scrollTo(0,0)}
+function checkSymptoms(){
+let s=[...document.querySelectorAll(".symptoms input:checked")].map(x=>x.value),o=document.getElementById("out");
+if(!s.length){o.innerHTML="<p>Please select at least one symptom.</p>";return}
+let m=db.map(d=>({d,score:d[2].filter(x=>s.includes(x)).length})).filter(x=>x.score).sort((a,b)=>b.score-a.score).slice(0,5);
+o.innerHTML="<p><b>"+s.length+"</b> symptom(s) selected.</p>"+m.map(x=>'<div class="result"><h3>'+x.d[0]+'</h3><p><b>Type:</b> '+x.d[1]+'</p><p><b>Educational overlap:</b> '+x.score+' selected symptom(s).</p><p>'+x.d[3]+'</p></div>').join("")+'<div class="warning"><b>Result:</b> These are possible educational matches only, not a diagnosis.</div>';
+}
+</script>
+</body>
+</html>
